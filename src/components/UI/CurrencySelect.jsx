@@ -24,7 +24,9 @@ const CurrencySelect = () => {
       }
     };
     getCurrencies();
-    onChangeCurrency(localStorage.getItem("selectedCurrency"));
+    if (localStorage.getItem("selectedCurrency")) {
+      onChangeCurrency(localStorage.getItem("selectedCurrency"));
+    }
   }, []);
 
   const handleChange = (e) => {
