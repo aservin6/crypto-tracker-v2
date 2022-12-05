@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { database } from "../../utils/firebase";
 import { ref, update } from "firebase/database";

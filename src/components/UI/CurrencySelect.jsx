@@ -5,7 +5,7 @@ import ErrorMessage from "./ErrorMessage";
 import CurrencyContext from "../../store/currency-context";
 
 const CurrencySelect = () => {
-  const { onChangeCurrency } = useContext(CurrencyContext);
+  const { onChangeCurrency, selectedCurrency } = useContext(CurrencyContext);
 
   const [currencies, setCurrencies] = useState();
   const [error, setError] = useState("");
@@ -19,14 +19,18 @@ const CurrencySelect = () => {
         );
         setCurrencies(data);
       } catch (err) {
-        let message = "Unknown Error";
-        if (err instanceof Error) message = err.message;
-        setError(message);
+        setError(err.message);
         setIsLoading(false);
       }
     };
     getCurrencies();
+    onChangeCurrency(localStorage.getItem("selectedCurrency"));
   }, []);
+
+  const handleChange = (e) => {
+    onChangeCurrency(e.target.value);
+    localStorage.setItem("selectedCurrency", e.target.value);
+  }
 
   return (
     <>
@@ -34,10 +38,9 @@ const CurrencySelect = () => {
       {error && <ErrorMessage message={error} />}
       {currencies && (
         <select
-          onChange={(e) => {
-            onChangeCurrency(e.target.value);
-          }}
+          onChange={handleChange}
           className="text-neutral-900 dark:text-white white dark:bg-neutral-900 text-[13px] outline-none hover:cursor-pointer"
+          value={selectedCurrency}
         >
           <option value="usd" key="usd">
             USD

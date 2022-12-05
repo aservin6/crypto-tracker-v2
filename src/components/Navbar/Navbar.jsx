@@ -10,6 +10,7 @@ const Navbar = ({ onShowSignup, onShowLogin }) => {
 
   const handleLogout = () => {
     onLogout();
+    window.location.reload();
   };
 
   useEffect(() => {}, [user]);

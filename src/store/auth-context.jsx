@@ -62,7 +62,6 @@ export const AuthContextProvider = ({ children }) => {
     setError(null);
     try {
       await signOut(auth);
-      setUser(null);
     } catch (err) {
       setError(err.message);
       console.log(err);
