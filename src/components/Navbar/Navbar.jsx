@@ -1,23 +1,18 @@
+import { useEffect } from "react";
 import { useContext } from "react";
 import { VscRocket } from "react-icons/vsc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UserContext from "../../store/auth-context";
 
 const Navbar = ({ onShowSignup, onShowLogin }) => {
   const { onLogout } = useContext(UserContext);
   const { user } = useContext(UserContext);
-  const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    try {
-      await onLogout();
-      navigate(0);
-      navigate("/");
-      console.log("Logged out");
-    } catch (err) {
-      console.log(err.message);
-    }
+  const handleLogout = () => {
+    onLogout();
   };
+
+  useEffect(() => {}, [user]);
 
   return (
     <nav className="mt-2 border-black md:mt-0 md:pt-5 whitespace-nowrap border-opacity-10 dark:border-white dark:border-opacity-20 md:border-t md:order-none">

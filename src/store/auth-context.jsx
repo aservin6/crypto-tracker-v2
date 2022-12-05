@@ -6,11 +6,11 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
-  getAdditionalUserInfo
+  getAdditionalUserInfo,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { database } from "../utils/firebase";
-import { set, ref, } from "firebase/database";
+import { set, ref } from "firebase/database";
 
 const UserContext = createContext({
   user: {},
@@ -58,8 +58,15 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    signOut(auth);
+  const logout = async () => {
+    setError(null);
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
   };
 
   const googleProvider = new GoogleAuthProvider();
