@@ -9,6 +9,7 @@ const Backdrop = ({
   onCloseLogin,
   onCloseSignup,
 }) => {
+  
   const closeModals = () => {
     onCloseLogin(false);
     onCloseSignup(false);
