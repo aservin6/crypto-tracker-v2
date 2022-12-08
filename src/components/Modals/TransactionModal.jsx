@@ -60,7 +60,7 @@ const TransactionModal = ({
       {showTransactionModal && (
         <ModalWrapper>
           <CloseModalButton closeModal={closeModal} />
-          <div className="flex items-center h-full mb-2">
+          <div className="flex items-center mb-2 bg-neutral-100 dark:bg-neutral-700">
             <div className="py-3 pl-2 bg-neutral-100 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 rounded-l-md">
               <CgSearch />
             </div>
@@ -69,7 +69,7 @@ const TransactionModal = ({
           {isLoading && <Loading />}
           {error && <ErrorMessage message={error} />}
           {!selectedCoin && (
-            <ul className="h-full overflow-y-auto hide-scrollbar max-h-[24rem]">
+            <ul className="h-full overflow-y-auto hide-scrollbar md:max-h-[24rem]">
               {handleSearch().map((coin) => {
                 return (
                   <CoinListItem

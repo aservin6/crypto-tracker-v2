@@ -16,7 +16,7 @@ const Home = ({ setShowLoginModal }) => {
       <TrendingCoins />
       <div className="flex flex-col justify-between w-full gap-1 mt-5 mb-2 md:items-center md:flex-row whitespace-nowrap">
         <Heading content={"Cryptocurrencies by Market Cap"} />
-        <div className="flex items-center h-full">
+        <div className="flex items-center h-full bg-neutral-100 dark:bg-neutral-700">
           <div className="py-3 pl-2 bg-neutral-100 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 rounded-l-md">
             <CgSearch />
           </div>
