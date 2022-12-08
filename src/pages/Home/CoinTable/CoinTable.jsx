@@ -9,7 +9,7 @@ import { onValue, ref } from "firebase/database";
 import UserContext from "../../../store/auth-context";
 import { database } from "../../../utils/firebase";
 
-const CoinTable = ({ page, setShowLoginModal }) => {
+const CoinTable = ({ page, setShowLoginModal, search }) => {
   const [coins, setCoins] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,11 +27,19 @@ const CoinTable = ({ page, setShowLoginModal }) => {
             if (obj.favorites) {
               setFavorites(obj.favorites);
             }
-            return
+            return;
           }
         });
       }
     });
+  };
+
+  const handleSearch = () => {
+    return coins.filter(
+      (coin) =>
+        coin.name.toLowerCase().includes(search) ||
+        coin.symbol.toLowerCase().includes(search)
+    );
   };
 
   useEffect(() => {
@@ -64,7 +72,7 @@ const CoinTable = ({ page, setShowLoginModal }) => {
         <CoinTableHeader />
         <tbody>
           {coins &&
-            coins.map((coin) => {
+            handleSearch().map((coin) => {
               return (
                 <CoinTableRow
                   key={coin.id}

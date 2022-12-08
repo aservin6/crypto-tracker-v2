@@ -13,6 +13,7 @@ import { useEffect } from "react";
 const App = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [showTransactionModal, setShowTransactionModal] = useState(false);
 
   useEffect(() => {
     if (showLoginModal || showSignupModal) {
@@ -23,7 +24,7 @@ const App = () => {
   }, [showLoginModal, showSignupModal]);
 
   return (
-    <div className="min-h-screen max-h-full px-3 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white font-primary">
+    <div className="max-h-full min-h-screen px-3 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white font-primary">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center justify-between lg:flex-row lg:h-12">
           <MarketOverview />
@@ -41,10 +42,12 @@ const App = () => {
           showSignupModal={showSignupModal}
           setShowSignupModal={setShowSignupModal}
           setShowLoginModal={setShowLoginModal}
+          showTransactionModal={showTransactionModal}
+          setShowTransactionModal={setShowTransactionModal}
         />
         <Routes>
           <Route path="/coins/:id" element={<Coin />} />
-          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portfolio" element={<Portfolio setShowTransactionModal={setShowTransactionModal} />} />
           <Route
             path="/"
             element={<Home setShowLoginModal={setShowLoginModal} />}

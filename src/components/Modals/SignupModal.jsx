@@ -69,14 +69,14 @@ const SignupModal = ({ showSignupModal, setShowSignupModal, setShowLoginModal })
               />
               <ModalSubmitButton content="Sign up" />
             </form>
-            <div className="text-sm text-black text-opacity-70 dark:text-white dark:text-opacity-70 mt-3">
+            <div className="mt-3 text-sm text-black text-opacity-70 dark:text-white dark:text-opacity-70">
               Already have an account?{" "}
               <span
                 onClick={() => {
                   closeModal();
                   showLoginModal();
                 }}
-                className="text-rose-500 hover:cursor-pointer"
+                className="text-blue-500 hover:cursor-pointer"
               >
                 Login
               </span>

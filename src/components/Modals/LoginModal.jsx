@@ -80,14 +80,14 @@ const LoginModal = ({
               providerIcon={<FcGoogle className="w-6 h-6" />}
               onProviderLogin={handleGoogleLogin}
             />
-            <div className="text-sm text-black text-opacity-70 dark:text-white dark:text-opacity-70 mt-3">
+            <div className="mt-3 text-sm text-black text-opacity-70 dark:text-white dark:text-opacity-70">
               Don't have an account?{" "}
               <span
                 onClick={() => {
                   closeModal();
                   showSignupModal();
                 }}
-                className="text-rose-500 hover:cursor-pointer"
+                className="text-blue-500 hover:cursor-pointer"
               >
                 Sign up
               </span>
