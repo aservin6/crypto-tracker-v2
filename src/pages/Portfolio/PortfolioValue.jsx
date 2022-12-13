@@ -13,8 +13,8 @@ const PortfolioValue = ({ openModal }) => {
       <div className="mt-5 font-semibold text-neutral-500 dark:text-neutral-400">
         Current Balance
       </div>
-      <div className="flex flex-col items-center justify-between pb-5 md:flex-row">
-        <div className="flex flex-col leading-none">
+      <div className="flex flex-col md:items-center justify-between pb-3 md:pb-5 md:flex-row">
+        <div className="flex flex-col pb-3 md:pb-0 leading-none">
           <span className="py-2 self-start text-3xl font-bold rounded-md w-fit">
             ${portfolioValue.toLocaleString()}
           </span>
