@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaChevronRight } from "react-icons/fa";
+import TransactionContext from "../../store/transaction-context";
 
-const TransactionCoinOption = ({ coin, setSelectedCoin }) => {
-  
+const TransactionCoinOption = ({ coin }) => {
+  const { setSelectedCoin } = useContext(TransactionContext);
+
   const selectCoin = () => {
-    setSelectedCoin(coin);
+    setSelectedCoin(coin.id);
   };
 
   return (
     <button
       onClick={selectCoin}
-      className="flex justify-between items-center w-full h-12 rounded-md px-3 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+      className="flex items-center justify-between w-full h-12 px-3 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-700"
     >
-      <div className="flex items-center gap-2 w-full">
+      <div className="flex items-center w-full gap-2">
         <span>
           <img className="w-6 h-6" src={coin.image} alt="" />
         </span>

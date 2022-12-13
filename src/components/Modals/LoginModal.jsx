@@ -17,7 +17,7 @@ const LoginModal = ({
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const error = authCtx.error;
+  const [error, setError] = useState(authCtx.error);
 
   const closeModal = () => setShowLoginModal(false);
   const showSignupModal = () => setShowSignupModal(true);
@@ -42,6 +42,12 @@ const LoginModal = ({
     },
     [authCtx.user]
   );
+
+  useEffect(() => {
+    if (!showLoginModal) {
+      setError(null);
+    }
+  }, [showSignupModal]);
 
   return (
     <>

@@ -2,13 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import ModalWrapper from "./ModalWrapper";
 import CloseModalButton from "./CloseModalButton";
 import axios from "axios";
-import CurrencyContext from "../../store/currency-context";
 import Loading from "../UI/Loading";
 import ErrorMessage from "../UI/ErrorMessage";
-import CoinListItem from "../../pages/Portfolio/CoinListItem";
 import TransactionScreen from "../../pages/Portfolio/TransactionScreen";
-import { CgSearch } from "react-icons/cg";
-import SearchInput from "../UI/SearchInput";
+import SelectCoinScreen from "../../pages/Portfolio/SelectCoinScreen";
+import TransactionContext from "../../store/transaction-context";
 
 const TransactionModal = ({
   showTransactionModal,
@@ -19,10 +17,9 @@ const TransactionModal = ({
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
 
-  const [selectedCoin, setSelectedCoin] = useState(null);
+ const {selectedCoin, setSelectedCoin} = useContext(TransactionContext);
 
   const closeModal = () => setShowTransactionModal(false);
-  const { selectedCurrency } = useContext(CurrencyContext);
 
   const handleSearch = () => {
     return coinListData.filter(
@@ -37,7 +34,7 @@ const TransactionModal = ({
       setError(null);
       try {
         const { data } = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${selectedCurrency}&order=market_cap_desc&per_page=250&page=1&sparkline=false`
+          `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false`
         );
         setCoinListData(data);
         setIsLoading(false);
@@ -60,28 +57,18 @@ const TransactionModal = ({
       {showTransactionModal && (
         <ModalWrapper>
           <CloseModalButton closeModal={closeModal} />
-          <div className="flex items-center mb-2 bg-neutral-100 dark:bg-neutral-700">
-            <div className="py-3 pl-2 bg-neutral-100 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 rounded-l-md">
-              <CgSearch />
-            </div>
-            <SearchInput onChange={(e) => setSearch(e.target.value)} />
-          </div>
+          
+          {!selectedCoin && (
+            <SelectCoinScreen
+              handleSearch={handleSearch}
+              setSearch={setSearch}
+            />
+          )}
           {isLoading && <Loading />}
           {error && <ErrorMessage message={error} />}
-          {!selectedCoin && (
-            <ul className="h-full overflow-y-auto hide-scrollbar md:max-h-[24rem]">
-              {handleSearch().map((coin) => {
-                return (
-                  <CoinListItem
-                    key={coin.id}
-                    coin={coin}
-                    setSelectedCoin={setSelectedCoin}
-                  />
-                );
-              })}
-            </ul>
+          {selectedCoin && (
+            <TransactionScreen selectedCoin={selectedCoin} setShowTransactionModal={setShowTransactionModal} />
           )}
-          {selectedCoin && <TransactionScreen selectedCoin={selectedCoin} />}
         </ModalWrapper>
       )}
     </>

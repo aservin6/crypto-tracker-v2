@@ -28,7 +28,7 @@ const App = () => {
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center justify-between lg:flex-row lg:h-12">
           <MarketOverview />
-          <div className="flex items-center self-end order-first gap-4 py-2 md:self-start md:order-last md:ml-auto md:py-0 lg:h-12">
+          <div className="flex items-center self-end order-first gap-4 py-2 md:mb-2 md:self-start md:order-last md:ml-auto md:py-0 lg:h-12">
             <CurrencySelect />
             <ThemeSwitch />
           </div>

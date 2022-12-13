@@ -8,9 +8,10 @@ import CoinTableHeader from "./CoinTableHeader";
 import { onValue, ref } from "firebase/database";
 import UserContext from "../../../store/auth-context";
 import { database } from "../../../utils/firebase";
+import Pagination from "../../../components/UI/Pagination";
 
-const CoinTable = ({ page, setShowLoginModal, search }) => {
-  const [coins, setCoins] = useState([]);
+const CoinTable = ({ page, setShowLoginModal, search, setPage }) => {
+  const [coins, setCoins] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [favorites, setFavorites] = useState([]);
@@ -68,24 +69,28 @@ const CoinTable = ({ page, setShowLoginModal, search }) => {
     <div className="overflow-auto text-sm md:overflow-visible">
       {error && <ErrorMessage message={error} />}
       {isLoading && <Loading />}
-      <table className="relative w-full">
-        <CoinTableHeader />
-        <tbody>
-          {coins &&
-            handleSearch().map((coin) => {
-              return (
-                <CoinTableRow
-                  key={coin.id}
-                  coin={coin}
-                  currency={selectedCurrency}
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  setShowLoginModal={setShowLoginModal}
-                />
-              );
-            })}
-        </tbody>
-      </table>
+      {coins && (
+        <>
+          <table className="relative w-full">
+            <CoinTableHeader />
+            <tbody>
+              {handleSearch().map((coin) => {
+                return (
+                  <CoinTableRow
+                    key={coin.id}
+                    coin={coin}
+                    currency={selectedCurrency}
+                    favorites={favorites}
+                    setFavorites={setFavorites}
+                    setShowLoginModal={setShowLoginModal}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+          <Pagination page={page} setPage={setPage} />
+        </>
+      )}
     </div>
   );
 };

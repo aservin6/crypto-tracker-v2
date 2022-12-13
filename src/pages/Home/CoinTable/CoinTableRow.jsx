@@ -20,7 +20,7 @@ const CoinTableRow = ({
         />
       </td>
       <td className="text-left">{coin.market_cap_rank}</td>
-      <td>
+      <td className="min-w-[11rem]">
         <div className="flex items-center text-left whitespace-nowrap">
           <div className="mr-2 overflow-hidden">
             <img className="w-5" src={coin.image} alt={coin.name} />
@@ -28,7 +28,7 @@ const CoinTableRow = ({
           <div>
             <Link
               className="flex flex-col md:items-center md:flex-row hover:underline"
-              to={`coins/${coin.id}`}
+              to={`/coins/${coin.id}`}
             >
               <span className="font-bold">{coin.name}</span>
               <span className="ml-0 text-xs text-neutral-600 dark:text-neutral-400 md:ml-2">
@@ -38,7 +38,7 @@ const CoinTableRow = ({
           </div>
         </div>
       </td>
-      <td className="pr-6 text-left md:pr-0">
+      <td className="text-left min-w-[5rem]">
         {currency === "usd" ? (
           <span>${coin.current_price}</span>
         ) : (
@@ -49,7 +49,7 @@ const CoinTableRow = ({
       </td>
       {coin.price_change_percentage_24h ? (
         <td
-          className={`text-right pr-6 md:pr-0 ${
+          className={`text-right min-w-[5rem] ${
             coin.price_change_percentage_24h > 0
               ? "text-green-500"
               : "text-red-500"
@@ -58,10 +58,10 @@ const CoinTableRow = ({
           {coin.price_change_percentage_24h.toFixed(1)}%
         </td>
       ) : (
-        <td className="text-right pr-6 md:pr-0">null</td>
+        <td className="text-right ">null</td>
       )}
 
-      <td className="pr-6 text-right md:pr-0">
+      <td className="text-right min-w-[11rem]">
         {currency === "usd" ? (
           <span>${coin.total_volume.toLocaleString()}</span>
         ) : (
@@ -70,7 +70,7 @@ const CoinTableRow = ({
           </span>
         )}
       </td>
-      <td className="pr-5 text-right">
+      <td className="pr-5 text-right min-w-[11rem]">
         {currency === "usd" ? (
           <span>${coin.market_cap.toLocaleString()}</span>
         ) : (
