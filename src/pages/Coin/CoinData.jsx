@@ -40,7 +40,7 @@ const CoinData = ({ coin, handleAddToPortfolio }) => {
           </div>
           <button
             onClick={handleAddToPortfolio}
-            className="flex whitespace-nowrap items-center justify-center gap-1 bg-blue-500 hover:bg-blue-400 text-white drop-shadow rounded-md px-2 py-1.5 font-semibold w-full md:w-auto md:px-5"
+            className="flex whitespace-nowrap items-center justify-center gap-1 bg-blue-500 hover:bg-blue-400 text-white drop-shadow rounded-md text-sm px-3 py-1.5 font-semibold md:w-auto md:px-5"
           >
             <MdAddCircle />
             Add to Portfolio
