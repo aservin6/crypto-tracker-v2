@@ -1,6 +1,6 @@
 import React from "react";
-import Heading from "../../components/UI/Heading";
-import SearchBar from "../../components/UI/SearchBar";
+import Heading from "../../UI/Heading";
+import SearchBar from "../../UI/SearchBar";
 import CoinListItem from "./CoinListItem";
 
 const SelectCoinScreen = ({ handleSearch, setSearch }) => {

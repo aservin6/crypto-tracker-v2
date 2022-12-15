@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import ModalWrapper from "./ModalWrapper";
-import CloseModalButton from "./CloseModalButton";
+import ModalWrapper from "../ModalWrapper";
+import CloseModalButton from "../CloseModalButton";
 import axios from "axios";
-import Loading from "../UI/Loading";
-import ErrorMessage from "../UI/ErrorMessage";
-import TransactionScreen from "../../pages/Portfolio/TransactionScreen";
-import SelectCoinScreen from "../../pages/Portfolio/SelectCoinScreen";
-import TransactionContext from "../../store/transaction-context";
+import Loading from "../../UI/Loading";
+import ErrorMessage from "../../UI/ErrorMessage";
+import TransactionScreen from "./TransactionScreen";
+import SelectCoinScreen from "./SelectCoinScreen";
+import TransactionContext from "../../../store/transaction-context";
 
 const TransactionModal = ({
   showTransactionModal,
@@ -57,7 +57,6 @@ const TransactionModal = ({
       {showTransactionModal && (
         <ModalWrapper>
           <CloseModalButton closeModal={closeModal} />
-          
           {!selectedCoin && (
             <SelectCoinScreen
               handleSearch={handleSearch}

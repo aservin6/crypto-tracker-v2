@@ -12,8 +12,7 @@ const PortfolioRow = ({ coin, openModal }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { selectedCurrency } = useContext(CurrencyContext);
-  const { setSelectedCoin } =
-    useContext(TransactionContext);
+  const { setSelectedCoin } = useContext(TransactionContext);
 
   const selectCoin = () => setSelectedCoin(coin.id);
 
@@ -35,10 +34,9 @@ const PortfolioRow = ({ coin, openModal }) => {
 
   return (
     <>
+      {error && <ErrorMessage message={error} />}
       <tr className="border-b border-opacity-10 dark:border-white dark:border-opacity-20 h-[3.75rem]">
         <td className="pl-5 text-left min-w-[11rem]">
-          {isLoading && <Loading />}
-          {error && <ErrorMessage message={error} />}
           <div className="flex items-center text-left whitespace-nowrap">
             <div className="mr-2 overflow-hidden">
               <img className="w-5" src={coin.coin_image} alt={coin.coin_name} />
@@ -57,33 +55,38 @@ const PortfolioRow = ({ coin, openModal }) => {
           </div>
         </td>
 
-        {coinData && (
-          <>
-            <td className="min-w-[9rem]">
-              {selectedCurrency === "usd"
-                ? `$${coinData.market_data.current_price[
-                    selectedCurrency
-                  ].toLocaleString()}`
-                : `${coinData.market_data.current_price[
-                    selectedCurrency
-                  ].toLocaleString()} ${selectedCurrency.toUpperCase()}`}{" "}
-            </td>
-            <td
-              className={`min-w-[3rem] ${
-                coinData.market_data.price_change_percentage_24h_in_currency[
+        {coinData ? (
+          <td className="min-w-[9rem]">
+            {selectedCurrency === "usd"
+              ? `$${coinData.market_data.current_price[
                   selectedCurrency
-                ] > 0
-                  ? "text-green-500"
-                  : "text-red-500"
-              }`}
-            >
-              {coinData.market_data.price_change_percentage_24h_in_currency[
-                selectedCurrency
-              ].toFixed(1)}
-              %
-            </td>
-          </>
+                ].toLocaleString()}`
+              : `${coinData.market_data.current_price[
+                  selectedCurrency
+                ].toLocaleString()} ${selectedCurrency.toUpperCase()}`}{" "}
+          </td>
+        ) : (
+          isLoading && <Loading />
         )}
+        {coinData ? (
+          <td
+            className={`min-w-[3rem] ${
+              coinData.market_data.price_change_percentage_24h_in_currency[
+                selectedCurrency
+              ] > 0
+                ? "text-green-500"
+                : "text-red-500"
+            }`}
+          >
+            {coinData.market_data.price_change_percentage_24h_in_currency[
+              selectedCurrency
+            ].toFixed(1)}
+            %
+          </td>
+        ) : (
+          isLoading && <Loading />
+        )}
+
         <td className="text-right min-w-[6rem]">{coin.quantity}</td>
         <td className="pr-5 text-right min-w-[6rem]">
           <button

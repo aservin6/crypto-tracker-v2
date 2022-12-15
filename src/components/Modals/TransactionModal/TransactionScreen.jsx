@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from "react";
-import Heading from "../../components/UI/Heading";
-import TransactionContext from "../../store/transaction-context";
+import Heading from "../../UI/Heading";
+import TransactionContext from "../../../store/transaction-context";
 import { uuidv4 } from "@firebase/util";
 import axios from "axios";
-import Loading from "../../components/UI/Loading";
-import ErrorMessage from "../../components/UI/ErrorMessage";
+import Loading from "../../UI/Loading";
+import ErrorMessage from "../../UI/ErrorMessage";
 
 const TransactionScreen = ({ selectedCoin, setShowTransactionModal }) => {
   const { transactions, setTransactions, addTransactionToDb } =

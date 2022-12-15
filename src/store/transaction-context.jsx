@@ -61,7 +61,6 @@ export const TransactionContextProvider = ({ children }) => {
     }, 0);
 
     setPortfolio(output);
-
     setOriginalPortfolioValue(originalPortfolioValueReducer);
   }, [transactions]);
 

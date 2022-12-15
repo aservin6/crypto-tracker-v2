@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FaChevronRight } from "react-icons/fa";
-import TransactionContext from "../../store/transaction-context";
+import TransactionContext from "../../../store/transaction-context";
 
 const TransactionCoinOption = ({ coin }) => {
   const { setSelectedCoin } = useContext(TransactionContext);

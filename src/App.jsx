@@ -46,7 +46,7 @@ const App = () => {
           setShowTransactionModal={setShowTransactionModal}
         />
         <Routes>
-          <Route path="/coins/:id" element={<Coin />} />
+          <Route path="/coins/:id" element={<Coin setShowTransactionModal={setShowTransactionModal} />} />
           <Route path="/portfolio" element={<Portfolio setShowTransactionModal={setShowTransactionModal} />} />
           <Route
             path="/"

@@ -2,8 +2,7 @@ import React from "react";
 import { createPortal } from "react-dom";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
-import TransactionModal from "./TransactionModal";
-
+import TransactionModal from "./TransactionModal/TransactionModal";
 const Backdrop = ({
   showLoginModal,
   showSignupModal,
