@@ -16,7 +16,7 @@ const App = () => {
   const [showTransactionModal, setShowTransactionModal] = useState(false);
 
   useEffect(() => {
-    if (showLoginModal || showSignupModal) {
+    if (showLoginModal || showSignupModal || showTransactionModal) {
       document.documentElement.classList.add("overflow-hidden");
     } else {
       document.documentElement.classList.remove("overflow-hidden");

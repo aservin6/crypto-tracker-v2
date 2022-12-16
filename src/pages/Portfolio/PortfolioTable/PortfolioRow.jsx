@@ -14,7 +14,7 @@ const PortfolioRow = ({ coin, openModal }) => {
   const { selectedCurrency } = useContext(CurrencyContext);
   const { setSelectedCoin } = useContext(TransactionContext);
 
-  const selectCoin = () => setSelectedCoin(coin.id);
+  const selectCoin = () => setSelectedCoin(coin.coin_id);
 
   useEffect(() => {
     const getCoinData = async () => {
