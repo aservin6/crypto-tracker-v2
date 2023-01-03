@@ -39,10 +39,8 @@ export const AuthContextProvider = ({ children }) => {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       setUser(res.user);
       addUserToDb(res.user);
-      console.log(res.user);
     } catch (err) {
       setError(err.message);
-      console.log(err);
     }
   };
 
@@ -51,10 +49,8 @@ export const AuthContextProvider = ({ children }) => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       setUser(res.user);
-      console.log(res.user);
     } catch (err) {
       setError(err.message);
-      console.log(err);
     }
   };
 
@@ -64,7 +60,6 @@ export const AuthContextProvider = ({ children }) => {
       await signOut(auth);
     } catch (err) {
       setError(err.message);
-      console.log(err);
     }
   };
 
@@ -76,14 +71,11 @@ export const AuthContextProvider = ({ children }) => {
       const res = await signInWithPopup(auth, googleProvider);
       const { isNewUser } = getAdditionalUserInfo(res);
       if (isNewUser) {
-        console.log(isNewUser);
         addUserToDb(res.user);
       }
       setUser(res.user);
-      console.log(res.user);
     } catch (err) {
       setError(err.message);
-      console.log(err);
     }
   };
 
