@@ -33,11 +33,11 @@ const CoinData = ({ coin, handleAddToPortfolio }) => {
               src={coin.image.small}
               alt={`${coin.name} icon`}
             />
-            <div className="flex items-start flex-col md:flex-row">
-            <span className="text-lg md:text-2xl font-bold">{coin.name}</span>
-            <span className="text-sm md:text-lg font-semibold text-neutral-500 dark:text-neutral-400">
-              {coin.symbol.toUpperCase()}
-            </span>
+            <div className="flex items-start flex-col md:flex-row md:items-center md:gap-3">
+              <span className="text-lg md:text-2xl font-bold">{coin.name}</span>
+              <span className="text-sm md:text-lg font-semibold text-neutral-500 dark:text-neutral-400">
+                {coin.symbol.toUpperCase()}
+              </span>
             </div>
           </div>
           <button

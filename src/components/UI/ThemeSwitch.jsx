@@ -29,6 +29,7 @@ const ThemeSwitch = () => {
       type="button"
       onClick={handleThemeSwitch}
       className="flex ml-auto text-neutral-900 dark:text-white text-lg p-1.5 rounded-lg hover:bg-black hover:bg-opacity-10 dark:hover:bg-white dark:hover:bg-opacity-10 transition-all duration-500"
+      aria-label="theme switch"
     >
       {theme === "dark" ? (
         <MdOutlineLightMode className="w-4 h-4" />

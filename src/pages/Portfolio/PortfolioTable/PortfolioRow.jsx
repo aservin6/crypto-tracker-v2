@@ -66,7 +66,9 @@ const PortfolioRow = ({ coin, openModal }) => {
                 ].toLocaleString()} ${selectedCurrency.toUpperCase()}`}{" "}
           </td>
         ) : (
-          isLoading && <Loading />
+          <td className="min-w-[9rem]">
+            isLoading && <Loading />
+          </td>
         )}
         {coinData ? (
           <td
@@ -84,7 +86,9 @@ const PortfolioRow = ({ coin, openModal }) => {
             %
           </td>
         ) : (
-          isLoading && <Loading />
+          <td className="min-w-[9rem]">
+            isLoading && <Loading />
+          </td>
         )}
 
         <td className="text-right min-w-[6rem]">{coin.quantity}</td>
@@ -94,6 +98,7 @@ const PortfolioRow = ({ coin, openModal }) => {
               openModal();
               selectCoin();
             }}
+            aria-label={`add transaction for ${coin.id}`}
           >
             <CgMathPlus className="w-5 h-5 hover:opacity-60" />
           </button>

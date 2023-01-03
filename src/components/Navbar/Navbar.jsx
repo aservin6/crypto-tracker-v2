@@ -61,7 +61,7 @@ const Navbar = ({ onShowSignup, onShowLogin }) => {
               <li>
                 <button
                   onClick={handleLogout}
-                  className="font-semibold rounded-md px-2 py-1.5 drop-shadow bg-white hover:bg-neutral-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-blue-500"
+                  className="font-semibold rounded-md px-2 py-1.5 drop-shadow bg-white hover:bg-neutral-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-blue-400"
                 >
                   Logout
                 </button>

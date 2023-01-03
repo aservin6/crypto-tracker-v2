@@ -20,17 +20,12 @@ const CoinTable = ({ page, setShowLoginModal, search, setPage }) => {
   const { user } = useContext(UserContext);
 
   const getFavorites = () => {
-    onValue(ref(database, `users/`), (snapshot) => {
+    onValue(ref(database, `users/${user.uid}`), (snapshot) => {
       const data = snapshot.val();
-      if (data) {
-        Object.values(data).map((obj) => {
-          if (obj.uid === user.uid) {
-            if (obj.favorites) {
-              setFavorites(obj.favorites);
-            }
-            return;
-          }
-        });
+      if (data.favorites) {
+        setFavorites(data.favorites);
+      } else {
+        return;
       }
     });
   };

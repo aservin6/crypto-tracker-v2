@@ -3,6 +3,7 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { database } from "../../utils/firebase";
 import { ref, update } from "firebase/database";
 import UserContext from "../../store/auth-context";
+import { useEffect } from "react";
 
 const FavoriteButton = ({
   coin,
@@ -69,6 +70,7 @@ const FavoriteButton = ({
         <button
           onClick={handleRemoveFromFavorites}
           className="flex items-center pl-1 mr-2 text-amber-400"
+          aria-label="favorited coin"
         >
           <AiFillStar className="w-5 h-5" />
         </button>
@@ -76,6 +78,7 @@ const FavoriteButton = ({
         <button
           onClick={handleAddToFavorites}
           className="flex items-center pl-1 mr-2"
+          aria-label="non favorited coin"
         >
           <AiOutlineStar className="w-5 h-5" />
         </button>

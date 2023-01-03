@@ -17,33 +17,20 @@ const Portfolio = ({ setShowTransactionModal }) => {
 
   useEffect(() => {
     const getFavorites = () => {
-      onValue(ref(database, `users/`), (snapshot) => {
+      onValue(ref(database, `users/${user.uid}`), (snapshot) => {
         const data = snapshot.val();
-        if (data) {
-          Object.values(data).map((obj) => {
-            if (obj.uid === user.uid) {
-              if (obj.favorites) {
-                setFavorites(obj.favorites);
-              }
-              return;
-            }
-          });
+        if (data.favorites) {
+          setFavorites(data.favorites);
+        } else {
+          return;
         }
+        
       });
     };
     const getTransactions = () => {
-      onValue(ref(database, `users/`), (snapshot) => {
+      onValue(ref(database, `users/${user.uid}`), (snapshot) => {
         const data = snapshot.val();
-        if (data) {
-          Object.values(data).map((obj) => {
-            if (obj.uid === user.uid) {
-              if (obj.transactions) {
-                setTransactions(obj.transactions);
-              }
-              return;
-            }
-          });
-        }
+        setTransactions(data.transactions);
       });
     };
 
@@ -61,7 +48,7 @@ const Portfolio = ({ setShowTransactionModal }) => {
             id="favorites-section"
             className="overflow-y-auto max-h-28 md:max-h-48 py-1"
           >
-            {favorites.length > 0 && <Favorites favorites={favorites} />}
+            {favorites && <Favorites favorites={favorites} />}
           </section>
           <PortfolioValue openModal={openModal} />
           {!portfolio.length > 0 && (
