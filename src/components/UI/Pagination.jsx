@@ -1,58 +1,39 @@
-import React from "react";
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
-import { RiArrowDropLeftLine, RiArrowDropRightLine } from "react-icons/ri";
 
 const Pagination = ({ page, setPage }) => {
+  function handleChangePage(increment) {
+    page + increment < 1 ? setPage(1) : setPage(page + increment);
+  }
+
   return (
-    <div className="flex justify-center py-5">
+    <div className="flex justify-center py-5 [&>*]:border [&>*]:border-neutral-300 [&>*]:dark:border [&>*]:dark:border-neutral-700">
       <button
-        onClick={() => {
-          if (parseInt(page) - 5 <= 0) {
-            setPage(1);
-          } else {
-            setPage(parseInt(page) - 5);
-          }
-        }}
-        className="py-1 px-2 bg-neutral-200 dark:bg-neutral-800 rounded-l-md hover:bg-neutral-100 dark:hover:bg-neutral-700"
-        value={page}
+        onClick={() => handleChangePage(-5)}
+        className="px-2 py-1 bg-neutral-200 dark:bg-neutral-800 rounded-l-md hover:bg-neutral-100 dark:hover:bg-neutral-700"
         aria-label="go back 5 pages"
       >
         <BsChevronDoubleLeft className="w-4 h-4" />
       </button>
       <button
-        onClick={() => {
-          if (parseInt(page) - 1 <= 0) {
-            setPage(1);
-          } else {
-            setPage(parseInt(page) - 1);
-          }
-        }}
-        className="flex items-center text-[13px] py-1 pr-2 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700"
-        value={page}
+        onClick={() => handleChangePage(-1)}
+        className="flex items-center text-[13px] py-1 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700"
         aria-label="go back 1 page"
       >
-        <RiArrowDropLeftLine className="w-5 h-5" />
-        <span>Prev</span>
+        <span className="px-2">Prev</span>
       </button>
-      <div
-        className="flex justify-center py-1 px-2 bg-neutral-200 dark:bg-neutral-800 h-8 w-8"
-        value={page}
-      >
+      <div className="flex select-none items-center justify-center w-8 h-8 px-2 py-1 bg-neutral-200 dark:bg-neutral-800">
         <span>{page}</span>
       </div>
       <button
-        onClick={() => setPage(parseInt(page) + 1)}
-        className="flex items-center text-[13px] py-1 pl-2 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700"
-        value={page}
+        onClick={() => handleChangePage(1)}
+        className="flex items-center text-[13px] py-1 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700"
         aria-label="go forward 1 page"
       >
-        <span>Next</span>
-        <RiArrowDropRightLine className="w-5 h-5" />
+        <span className="px-2">Next</span>
       </button>
       <button
-        onClick={() => setPage(parseInt(page) + 5)}
-        className="py-1 px-2 bg-neutral-200 dark:bg-neutral-800 rounded-r-md hover:bg-neutral-100 dark:hover:bg-neutral-700"
-        value={page}
+        onClick={() => handleChangePage(5)}
+        className="px-2 py-1 bg-neutral-200 dark:bg-neutral-800 rounded-r-md hover:bg-neutral-100 dark:hover:bg-neutral-700"
         aria-label="go forward 5 pages"
       >
         <BsChevronDoubleRight className="w-4 h-4" />

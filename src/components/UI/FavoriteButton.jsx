@@ -3,7 +3,6 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { database } from "../../utils/firebase";
 import { ref, update } from "firebase/database";
 import UserContext from "../../store/auth-context";
-import { useEffect } from "react";
 
 const FavoriteButton = ({
   coin,
@@ -53,6 +52,7 @@ const FavoriteButton = ({
       ]),
         addFavoriteToDb();
     } else {
+      window.scrollTo(0, 0);
       showLoginModal();
     }
   };
