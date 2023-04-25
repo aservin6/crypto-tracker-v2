@@ -28,9 +28,15 @@ export const TransactionContextProvider = ({ children }) => {
 
   const addTransactionToDb = (transaction) => {
     const uid = user.uid;
-    update(ref(database, `users/${uid}`), {
-      transactions: [transaction, ...transactions],
-    });
+    if (!transactions) {
+      update(ref(database, `users/${uid}`), {
+        transactions: [transaction],
+      });
+    } else {
+      update(ref(database, `users/${uid}`), {
+        transactions: [transaction, ...transactions],
+      });
+    }
   };
 
   useEffect(() => {
