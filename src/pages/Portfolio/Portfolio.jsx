@@ -51,7 +51,7 @@ const Portfolio = ({ setShowTransactionModal }) => {
             {favorites && <Favorites favorites={favorites} />}
           </section>
           <PortfolioValue openModal={openModal} />
-          {!portfolio.length > 0 && (
+          {portfolio && !portfolio.length > 0 && (
             <div className="text-center md:text-xl opacity-60">
               Your portfolio is empty, add coins to view them here.
             </div>
@@ -60,7 +60,7 @@ const Portfolio = ({ setShowTransactionModal }) => {
             id="portfolio-section"
             className="overflow-auto text-sm md:mb-5 md:overflow-visible"
           >
-            {portfolio.length > 0 && (
+            {portfolio && (
               <PortfolioTable portfolio={portfolio} openModal={openModal} />
             )}
           </section>
@@ -68,7 +68,7 @@ const Portfolio = ({ setShowTransactionModal }) => {
             id="transactions-section"
             className="overflow-auto text-sm md:overflow-visible"
           >
-            {transactions.length > 0 && (
+            {transactions && (
               <TransactionTable transactions={transactions} />
             )}
           </section>
