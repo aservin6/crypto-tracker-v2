@@ -54,7 +54,12 @@ const TransactionScreen = ({ selectedCoin, setShowTransactionModal }) => {
       type: transactionType ? "Buy" : "Sell",
       id: uuidv4(),
     };
-    setTransactions([transaction, ...transactions]);
+    if (!transactions) {
+      setTransactions([transaction]);
+    } else {
+      setTransactions([transaction, ...transactions]);
+    }
+    
     addTransactionToDb(transaction);
     closeModal();
   };
