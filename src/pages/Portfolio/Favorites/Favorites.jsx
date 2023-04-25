@@ -17,8 +17,8 @@ const Favorites = ({ favorites }) => {
           })}
         </ul>
       )}
-      {!favorites && (
-        <h2 className="mt-10 text-2xl font-semibold text-center mb-10 border-b border-black border-opacity-10">Don't forget to add your favorite coins!</h2>
+      {!favorites || !favorites.length > 0 && (
+        <h3 className="mt-10 text-2xl font-semibold text-center mb-10 border-b border-black border-opacity-10">Don't forget to add your favorite coins!</h3>
       )}
     </>
   );
