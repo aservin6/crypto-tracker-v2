@@ -7,15 +7,25 @@ import { uuidv4 } from "@firebase/util";
 const PortfolioTable = ({ portfolio, openModal }) => {
   return (
     <>
-      <Heading content={"Your Coins"} />
-      <table className="relative w-full">
-        <PortfolioTableHead />
-        <tbody>
-          {portfolio.map((coin) => {
-            return <PortfolioRow key={uuidv4()} coin={coin} openModal={openModal} />;
-          })}
-        </tbody>
-      </table>
+      {portfolio.length > 0 && (
+        <>
+          <Heading content={"Your Coins"} />
+          <table className="relative w-full">
+            <PortfolioTableHead />
+            <tbody>
+              {portfolio.map((coin) => {
+                return (
+                  <PortfolioRow
+                    key={uuidv4()}
+                    coin={coin}
+                    openModal={openModal}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        </>
+      )}
     </>
   );
 };
