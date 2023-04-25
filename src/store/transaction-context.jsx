@@ -28,21 +28,13 @@ export const TransactionContextProvider = ({ children }) => {
 
   const addTransactionToDb = (transaction) => {
     const uid = user.uid;
-    if (!transactions) {
-      update(ref(database, `users/${uid}`), {
-        transactions: [transaction],
-      });
-    } else {
-      update(ref(database, `users/${uid}`), {
-        transactions: [transaction, ...transactions],
-      });
-    }
+
+    update(ref(database, `users/${uid}`), {
+      transactions: [transaction, ...transactions],
+    });
   };
 
   useEffect(() => {
-    if (!transactions || transactions.length === 0) {
-      return;
-    }
     const portfolioValues = transactions.reduce((acc, curr) => {
       return [
         {
