@@ -28,41 +28,44 @@ export const TransactionContextProvider = ({ children }) => {
 
   const addTransactionToDb = (transaction) => {
     const uid = user.uid;
-
     update(ref(database, `users/${uid}`), {
       transactions: [transaction, ...transactions],
     });
   };
 
   useEffect(() => {
-    const portfolioValues = transactions.reduce((acc, curr) => {
-      return [
-        {
-          coin_id: curr.coin_id,
-          coin_name: curr.coin_name,
-          coin_symbol: curr.coin_symbol,
-          coin_image: curr.coin_image,
-          quantity: parseInt(curr.quantity),
-          current_price: curr.current_price,
-        },
-        ...acc,
-      ];
-    }, []);
+    if (!transactions) {
+      return;
+    } else {
+      const portfolioValues = transactions.reduce((acc, curr) => {
+        return [
+          {
+            coin_id: curr.coin_id,
+            coin_name: curr.coin_name,
+            coin_symbol: curr.coin_symbol,
+            coin_image: curr.coin_image,
+            quantity: parseInt(curr.quantity),
+            current_price: curr.current_price,
+          },
+          ...acc,
+        ];
+      }, []);
 
-    const portfolioArray = portfolioValues.reduce((acc, curr) => {
-      acc[curr.coin_id]
-        ? (acc[curr.coin_id].quantity += curr.quantity)
-        : (acc[curr.coin_id] = curr);
-      return acc;
-    }, []);
-    const output = Object.values(portfolioArray);
+      const portfolioArray = portfolioValues.reduce((acc, curr) => {
+        acc[curr.coin_id]
+          ? (acc[curr.coin_id].quantity += curr.quantity)
+          : (acc[curr.coin_id] = curr);
+        return acc;
+      }, []);
+      const output = Object.values(portfolioArray);
 
-    const originalPortfolioValueReducer = transactions.reduce((acc, curr) => {
-      return (acc += curr.quantity * curr.price_per_coin);
-    }, 0);
+      const originalPortfolioValueReducer = transactions.reduce((acc, curr) => {
+        return (acc += curr.quantity * curr.price_per_coin);
+      }, 0);
 
-    setPortfolio(output);
-    setOriginalPortfolioValue(originalPortfolioValueReducer);
+      setPortfolio(output);
+      setOriginalPortfolioValue(originalPortfolioValueReducer);
+    }
   }, [transactions]);
 
   useEffect(() => {
