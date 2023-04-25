@@ -30,6 +30,8 @@ export const AuthContextProvider = ({ children }) => {
     set(ref(database, "users/" + uid), {
       email: user.email,
       uid: uid,
+      transactions: null,
+      favorites: null,
     });
   };
 
