@@ -41,6 +41,9 @@ export const TransactionContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (!transactions) {
+      setPortfolio(null);
+      setPortfolioValue(0);
+      setOriginalPortfolioValue(0);
       return;
     } else {
       const portfolioValues = transactions.reduce((acc, curr) => {
@@ -75,16 +78,20 @@ export const TransactionContextProvider = ({ children }) => {
   }, [transactions]);
 
   useEffect(() => {
-    portfolio.forEach(async (coin) => {
-      const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${coin.coin_id}?localization=true&tickers=false&community_data=false&developer_data=false&sparkline=false`
-      );
-      coin.current_price = data.market_data.current_price.usd;
-      const portfolioValueReducer = portfolio.reduce((acc, curr) => {
-        return (acc += curr.quantity * curr.current_price);
-      }, 0);
-      setPortfolioValue(portfolioValueReducer);
-    });
+    if (!portfolio) {
+      return;
+    } else {
+      portfolio.forEach(async (coin) => {
+        const { data } = await axios.get(
+          `https://api.coingecko.com/api/v3/coins/${coin.coin_id}?localization=true&tickers=false&community_data=false&developer_data=false&sparkline=false`
+        );
+        coin.current_price = data.market_data.current_price.usd;
+        const portfolioValueReducer = portfolio.reduce((acc, curr) => {
+          return (acc += curr.quantity * curr.current_price);
+        }, 0);
+        setPortfolioValue(portfolioValueReducer);
+      });
+    }
   }, [portfolio]);
 
   return (

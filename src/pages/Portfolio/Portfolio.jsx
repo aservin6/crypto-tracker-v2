@@ -50,8 +50,8 @@ const Portfolio = ({ setShowTransactionModal }) => {
             {favorites && <Favorites favorites={favorites} />}
           </section>
           <PortfolioValue openModal={openModal} />
-          {portfolio && !portfolio.length > 0 && (
-            <div className="text-center md:text-xl opacity-60 px-2">
+          {!portfolio && (
+            <div className="text-center md:text-xl text-black dark:text-white dark:opacity-60 px-2">
               Your portfolio is empty, add coins to view them here.
             </div>
           )}
