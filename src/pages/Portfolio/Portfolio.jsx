@@ -24,7 +24,6 @@ const Portfolio = ({ setShowTransactionModal }) => {
         } else {
           return;
         }
-        
       });
     };
     const getTransactions = () => {
@@ -38,7 +37,7 @@ const Portfolio = ({ setShowTransactionModal }) => {
       getFavorites();
       getTransactions();
     }
-  }, [user, portfolio, transactions]);
+  }, [user]);
 
   return (
     <>
@@ -68,9 +67,7 @@ const Portfolio = ({ setShowTransactionModal }) => {
             id="transactions-section"
             className="overflow-auto text-sm md:overflow-visible"
           >
-            {transactions && (
-              <TransactionTable transactions={transactions} />
-            )}
+            {transactions && <TransactionTable transactions={transactions} />}
           </section>
         </div>
       )}

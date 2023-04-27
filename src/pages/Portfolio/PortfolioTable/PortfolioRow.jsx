@@ -71,9 +71,7 @@ const PortfolioRow = ({ coin, openModal }) => {
                   ].toLocaleString()} ${selectedCurrency.toUpperCase()}`}{" "}
             </td>
           ) : (
-            <td className="min-w-[9rem]">
-              isLoading && <Loading />
-            </td>
+            <td className="min-w-[9rem]">{isLoading && <Loading />}</td>
           )}
           {coinData ? (
             <td
@@ -91,9 +89,7 @@ const PortfolioRow = ({ coin, openModal }) => {
               %
             </td>
           ) : (
-            <td className="min-w-[9rem]">
-              isLoading && <Loading />
-            </td>
+            <td className="min-w-[9rem]">{isLoading && <Loading />}</td>
           )}
 
           <td className="text-right min-w-[6rem]">{coin.quantity}</td>
