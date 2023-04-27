@@ -48,7 +48,7 @@ const CoinTable = ({ page, setShowLoginModal, search, setPage }) => {
     const getCoins = async () => {
       try {
         const { data } = await axios.get(
-          `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${selectedCurrency}&order=market_cap_desc&per_page=50&page=${page}&sparkline=false`
+          `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${selectedCurrency}&order=market_cap_desc&per_page=10&page=${page}&sparkline=false`
         );
         setCoins(data);
         setIsLoading(false);
